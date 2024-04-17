@@ -17,6 +17,9 @@ export default defineStore('user', {
         clearUser() {
             // @ts-ignore
             this.user = {}
+        },
+        getRoles() {
+            return this.user.roles === 'admins' || this.user.roles === 'admin';
         }
     },
     persist: true

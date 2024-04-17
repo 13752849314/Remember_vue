@@ -6,7 +6,7 @@
                     router
                     active-text-color="#bb9505"
                     background-color="#fbda41">
-                <el-sub-menu index="1">
+                <el-sub-menu index="1" v-if="userStore.getRoles()">
                     <template #title>
                         <el-icon>
                             <User/>
@@ -24,7 +24,7 @@
                         <span>账单管理</span>
                     </template>
                     <el-menu-item index="/bill">我的账单</el-menu-item>
-                    <el-menu-item>？？？</el-menu-item>
+                    <el-menu-item v-if="userStore.getRoles()">？？？</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="3">
                     <template #title>
@@ -34,7 +34,7 @@
                         <span>文件管理</span>
                     </template>
                     <el-menu-item index="/file">我的文件</el-menu-item>
-                    <el-menu-item>？？？</el-menu-item>
+                    <el-menu-item v-if="userStore.getRoles()">？？？</el-menu-item>
                 </el-sub-menu>
             </el-menu>
         </div>

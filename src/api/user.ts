@@ -21,3 +21,8 @@ export const $GetUsers = async () => {
     let ret = $get('user/user')
     return ret
 }
+
+export const $AddUser = async (params: object) => {
+    let ret = $post('/user/register', params)
+    return ret
+}

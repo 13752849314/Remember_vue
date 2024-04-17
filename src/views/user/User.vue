@@ -1,5 +1,8 @@
 <template>
   <div class="user">
+      <div class="search">
+          <el-button type="primary" @click="addRef.drawer=true">添加</el-button>
+      </div>
     <el-table :data="users" style="width: 95%">
       <el-table-column prop="id" label="编号"/>
       <el-table-column prop="username" label="用户名"/>
@@ -22,16 +25,18 @@
         </template>
       </el-table-column>
     </el-table>
+      <Drawer ref="addRef"></Drawer>
   </div>
 </template>
 
 <script setup lang="ts">
 import {onMounted, ref} from 'vue'
-import {$GetUsers} from "../../api/user.ts";
+import {$GetUsers} from "../../api/user.ts"
+import Drawer from "../../components/Drawer.vue"
 
 let users = ref([])
 let getAllUsers = () => {
-  let users1 = $GetUsers()
+  let users1= $GetUsers()
   users1.then(data => {
     users.value = data.data.user
   })
@@ -48,8 +53,12 @@ const handleDelete = (username: string) => {
   console.log(username)
 }
 
+let addRef = ref(null)
+
 </script>
 
 <style scoped lang="scss">
-
+.search{
+  margin-bottom: 5px;
+}
 </style>
