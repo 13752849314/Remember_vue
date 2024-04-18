@@ -23,6 +23,6 @@ export const $GetUsers = async () => {
 }
 
 export const $AddUser = async (params: object) => {
-    let ret = $post('/user/register', params)
+    let ret = $post('/user/add', params)
     return ret
 }

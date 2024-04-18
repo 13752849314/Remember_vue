@@ -24,7 +24,7 @@
                         <span>账单管理</span>
                     </template>
                     <el-menu-item index="/bill">我的账单</el-menu-item>
-                    <el-menu-item v-if="userStore.getRoles()">？？？</el-menu-item>
+                    <el-menu-item v-if="userStore.getRoles()">所有账单</el-menu-item>
                 </el-sub-menu>
                 <el-sub-menu index="3">
                     <template #title>
