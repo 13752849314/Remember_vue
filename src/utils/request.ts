@@ -17,12 +17,14 @@ instance.interceptors.response.use(function (response) {
             title: '通知',
             message: response.data.data.message,
             type: 'success',
+            position: 'bottom-left',
         })
     } else {
         ElNotification({
             title: '通知',
             message: response.data.data.message,
             type: 'error',
+            position: 'bottom-left',
         })
     }
     return response

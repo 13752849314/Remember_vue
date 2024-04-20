@@ -6,6 +6,8 @@ export default defineStore('user', {
             user: {
                 roles: '',
                 username: '',
+                phone: '',
+                email: ''
             }
         }
     },
@@ -20,6 +22,9 @@ export default defineStore('user', {
         },
         getRoles() {
             return this.user.roles === 'admins' || this.user.roles === 'admin';
+        },
+        getUser() {
+            return this.user
         }
     },
     persist: true

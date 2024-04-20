@@ -18,11 +18,17 @@ export const $Logout = async () => {
 }
 
 export const $GetUsers = async () => {
-    let ret = $get('user/user')
-    return ret
+    return await $get('user/user')
 }
 
 export const $AddUser = async (params: object) => {
-    let ret = $post('/user/add', params)
-    return ret
+    return await $post('/user/add', params)
+}
+
+export const $Delete = async (username: string) => {
+    return await $post('/user/delete', {"username": username})
+}
+
+export const $ChangeInfo = async (params: object) => {
+    return await $post('/user/changeI', params)
 }

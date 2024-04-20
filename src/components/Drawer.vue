@@ -33,10 +33,10 @@
                 <el-form-item label="生日" prop="birthday">
                     <el-date-picker
                             v-model="user.birthday"
-                            type="datetime"
-                            placeholder="Pick a Date"
-                            format="YYYY-MM-DD HH:mm:ss"
-                            value-format="YYYY-MM-DD HH:mm:ss"
+                            type="date"
+                            placeholder="请选择日期"
+                            format="YYYY-MM-DD"
+                            value-format="YYYY-MM-DD"
                     />
                 </el-form-item>
                 <el-form-item>
@@ -49,16 +49,18 @@
 </template>
 
 <script setup lang="ts">
-import {reactive, ref} from "vue";
+import {reactive, ref} from "vue"
 import type {FormInstance, FormRules} from 'element-plus'
-import {$AddUser} from "../api/user.ts";
+import {$AddUser} from "../api/user.ts"
+
+const emit = defineEmits(['sync-list'])
 
 const drawer = ref(false)
 const closeDrawer = () => {
     drawer.value = false
 }
 const formRef = ref<FormInstance>()
-const user = reactive({
+const user = ref({
     username: '',
     password: '',
     phone: '',
@@ -83,8 +85,8 @@ const submitForm = (formEl: FormInstance | undefined) => {
     if (!formEl) return
     formEl.validate(async (valid) => {
         if (valid) {
-            $AddUser(user)
-            drawer.value = false
+            await $AddUser(user.value)
+            emit('sync-list')
         } else {
             return false
         }

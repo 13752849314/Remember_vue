@@ -34,7 +34,7 @@
                         <span>文件管理</span>
                     </template>
                     <el-menu-item index="/file">我的文件</el-menu-item>
-                    <el-menu-item v-if="userStore.getRoles()">？？？</el-menu-item>
+                    <el-menu-item v-if="userStore.getRoles()">所有文件</el-menu-item>
                 </el-sub-menu>
             </el-menu>
         </div>
