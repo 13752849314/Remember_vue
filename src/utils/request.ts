@@ -1,11 +1,11 @@
-import axios from "axios";
-import {baseURL} from "../config/baseURL.ts";
-import {ElNotification} from "element-plus";
+import axios from "axios"
+import {baseURL} from "../config/baseURL.ts"
+import {ElNotification} from "element-plus"
 
 const instance = axios.create({
     baseURL: baseURL,
     timeout: 30000,
-});
+})
 
 instance.interceptors.request.use(function (config) {
     config.headers['jwt'] = localStorage.getItem('jwt')
@@ -27,6 +27,7 @@ instance.interceptors.response.use(function (response) {
             position: 'bottom-left',
         })
     }
+    console.log(response.data.data.message)
     return response
 })
 

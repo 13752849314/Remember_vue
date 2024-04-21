@@ -32,14 +32,15 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {$ChangeInfo} from "../api/user.ts"
+
 const emit = defineEmits(['sync-list'])
 
 const table = ref({})
 let dialogFormVisible = ref(false)
 
 
-const changeInfo =async () => {
-    await $ChangeInfo(table.value)
+const changeInfo = async () => {
+    await $ChangeInfo(table.value, table.value.id)
     emit('sync-list')
     dialogFormVisible.value = false
 }

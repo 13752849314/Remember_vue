@@ -3,7 +3,7 @@
         <el-form :model="table">
             <el-form-item label="消费类型" prop="consumeType">
                 <el-select v-model="table.consumeType">
-                    <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value="k" :key="k"></el-option>
+                    <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value='k' :key='k'></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="消费金额" prop="consumeMoney">
@@ -35,19 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import {ref} from "vue";
-import {ConsumeTypeMapping} from "../utils/common.ts";
-import {$changeBill} from "../api/bill.ts";
+import {ref} from "vue"
+import {ConsumeTypeMapping} from "../utils/common.ts"
+import {$changeBill} from "../api/bill.ts"
 
 const mapping = ConsumeTypeMapping
 const emit = defineEmits(['sync-list'])
-
-const table = ref({})
+let table = ref({})
 let dialogFormVisible = ref(false)
 
-
 const changeInfo = async () => {
-    console.log(table.value)
     await $changeBill(table.value, table.value.id)
     emit('sync-list')
     dialogFormVisible.value = false

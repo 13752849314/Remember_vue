@@ -29,6 +29,6 @@ export const $Delete = async (username: string) => {
     return await $post('/user/delete', {"username": username})
 }
 
-export const $ChangeInfo = async (params: object) => {
-    return await $post('/user/changeI', params)
+export const $ChangeInfo = async (params: object, id: string) => {
+    return await $post('/user/changeI/' + id, params)
 }

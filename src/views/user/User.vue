@@ -5,13 +5,12 @@
         </div>
         <el-table :data="showUsers" style="width: 95%">
             <el-table-column prop="id" label="编号" sortable/>
-            <el-table-column prop="username" label="用户名"/>
+            <el-table-column prop="username" label="用户名" :formatter="formatter"/>
             <el-table-column prop="phone" label="电话"/>
             <el-table-column prop="email" label="邮箱"/>
             <el-table-column prop="birthday" label="生日"/>
             <el-table-column prop="roles" label="角色"/>
             <el-table-column prop="created_at" label="创建于" sortable/>
-            <el-table-column prop="deleted_at" label="删除于" :formatter="formatter"/>
             <el-table-column label="操作">
                 <template #default="scope">
                     <el-button size="small" @click="handleEdit(scope.row)">
@@ -75,9 +74,10 @@ const handleDelete = (username: string) => {
     })
 }
 const formatter = (row, column, cellValue, index) => {
-    if (cellValue) {
+    if (row.deleted_at) {
         return h('span', {style: 'color: red'}, cellValue)
     }
+    return h('span', {style: 'color: green'}, cellValue)
 }
 
 let addRef = ref(null)

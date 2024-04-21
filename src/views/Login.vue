@@ -74,7 +74,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
       if (ret) {
         let user = await $GetInfo()
         userStore.setUser(user.data.info)
-        await router.push('/index')
+        router.push('/index')
       }
     } else {
       return false

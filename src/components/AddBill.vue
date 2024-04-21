@@ -32,10 +32,10 @@
 </template>
 
 <script setup lang="ts">
-import {reactive, ref} from "vue";
-import {ConsumeTypeMapping} from "../utils/common.ts";
-import {FormInstance, FormRules} from "element-plus";
-import {$addBill} from "../api/bill.ts";
+import {reactive, ref} from "vue"
+import {ConsumeTypeMapping} from "../utils/common.ts"
+import {FormInstance, FormRules} from "element-plus"
+import {$addBill} from "../api/bill.ts"
 
 const emit = defineEmits(['sync-list'])
 const mapping = ConsumeTypeMapping

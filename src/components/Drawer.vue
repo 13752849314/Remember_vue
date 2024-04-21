@@ -87,6 +87,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
         if (valid) {
             await $AddUser(user.value)
             emit('sync-list')
+            formEl.resetFields()
         } else {
             return false
         }
