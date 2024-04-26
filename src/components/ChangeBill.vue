@@ -3,11 +3,11 @@
         <el-form :model="table">
             <el-form-item label="消费类型" prop="consumeType">
                 <el-select v-model="table.consumeType">
-                    <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value='k' :key='k'></el-option>
+                    <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value='Number(k)' :key='k'></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="消费金额" prop="consumeMoney">
-                <el-input v-model="table.consumeMoney" type="number"/>
+                <el-input-number v-model="table.consumeMoney" type="number"/>
             </el-form-item>
             <el-form-item label="消费时间" prop="consumeTime">
                 <el-date-picker
@@ -40,13 +40,13 @@ import {ConsumeTypeMapping} from "../utils/common.ts"
 import {$changeBill} from "../api/bill.ts"
 
 const mapping = ConsumeTypeMapping
-const emit = defineEmits(['sync-list'])
+const emit = defineEmits(['sync-list1'])
 let table = ref({})
 let dialogFormVisible = ref(false)
 
 const changeInfo = async () => {
     await $changeBill(table.value, table.value.id)
-    emit('sync-list')
+    emit('sync-list1')
     dialogFormVisible.value = false
 }
 defineExpose({

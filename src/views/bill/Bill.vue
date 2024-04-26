@@ -26,8 +26,8 @@
         </el-table>
         <el-pagination small background layout="prev, pager, next" :total="bills.length" style="margin-top: 6px"
                        v-model:current-page="pageIndex"/>
-        <AddBill ref="addBill" @sync-list="getBill"></AddBill>
-        <ChangeBill ref="changeBill" @sync-list="getBill"></ChangeBill>
+        <AddBill ref="addBill" @sync-list1="getBill"></AddBill>
+        <ChangeBill ref="changeBill" @sync-list1="getBill"></ChangeBill>
     </div>
 </template>
 

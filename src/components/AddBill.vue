@@ -7,12 +7,12 @@
             <el-form :model="bill" ref="formRef" label-width="auto" label-position="right" :rules="rules">
                 <el-form-item label="消费类型" prop="consumeType">
                     <el-select v-model="bill.consumeType">
-                        <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value="k"
+                        <el-option v-for="k of Object.keys(mapping)" :label="mapping[k]" :value="Number(k)"
                                    :key="k"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="消费金额" prop="consumeMoney">
-                    <el-input v-model="bill.consumeMoney" type="number"></el-input>
+                    <el-input-number v-model="bill.consumeMoney" type="number"></el-input-number>
                 </el-form-item>
                 <el-form-item label="消费时间" prop="consumeTime">
                     <el-date-picker v-model="bill.consumeTime" type="datetime" placeholder="请选择日期"
@@ -37,7 +37,7 @@ import {ConsumeTypeMapping} from "../utils/common.ts"
 import {FormInstance, FormRules} from "element-plus"
 import {$addBill} from "../api/bill.ts"
 
-const emit = defineEmits(['sync-list'])
+const emit = defineEmits(['sync-list1'])
 const mapping = ConsumeTypeMapping
 const formRef = ref<FormInstance>()
 const drawer = ref(false)
@@ -45,8 +45,8 @@ const closeDrawer = () => {
     drawer.value = false
 }
 const bill = ref({
-    consumeType: '',
-    consumeMoney: '',
+    consumeType: 0,
+    consumeMoney: 0,
     consumeTime: '',
     remark: ''
 })
@@ -64,7 +64,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     formEl.validate(async (valid) => {
         if (valid) {
             await $addBill(bill.value)
-            emit('sync-list')
+            emit('sync-list1')
             formEl.resetFields()
         } else {
             return false
